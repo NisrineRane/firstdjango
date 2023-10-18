@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une Demande de Prêt</title>
+    <!-- Inclure Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    {% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-5">Créer une Demande de Prêt</h2>
+
+                <!-- Formulaire de création de demande de prêt -->
+                <form method="post"  action="{% url 'demande_pret' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+
+                            <!-- Artwork Field -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Artwork</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group has-validation">
+                                            <select class="form-select" aria-label="Default select example" name="artwork" required>
+                                                <option value="" selected disabled>Select Artwork</option>
+                                                {% for art in artworks %}
+                                                    <option value="{{ art.id }}">{{ art.title }}</option>
+                                                {% empty %}
+                                                    <option disabled>No Artworks available</option>
+                                                {% endfor %}
+                                            </select>
+                                        <div class="invalid-feedback">Please select an artwork.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Date Debut Field -->
+                            <div class="row mb-3">
+                                <label for="DateDebut" class="col-sm-2 col-form-label">Date de début</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="DateDebut" id="DateDebut" required onchange="adjustDateFin()">
+                                    <div class="invalid-feedback">Veuillez fournir une date de début.</div>
+                                </div>
+                            </div>
+
+
+                            <!-- Heure Debut Field -->
+                            <div class="row mb-3">
+                                <label for="HDebut" class="col-sm-2 col-form-label">Heure de début</label>
+                                <div class="col-sm-10">
+                                    <input type="time" class="form-control" name="HDebut" id="HDebut" required>
+                                    <div class="invalid-feedback">Veuillez fournir une heure de début.</div>
+                                </div>
+                            </div>
+
+
+                            <!-- Date Fin Field -->
+                            <div class="row mb-3">
+                                <label for="DateFin" class="col-sm-2 col-form-label">Date de fin</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="DateFin" id="DateFin" required>
+                                    <div class="invalid-feedback">Veuillez fournir une date de fin.</div>
+                                </div>
+                            </div>
+
+                            <!-- Heure Fin Field -->
+                            <div class="row mb-3">
+                                <label for="HFin" class="col-sm-2 col-form-label">Heure de fin</label>
+                                <div class="col-sm-10">
+                                    <input type="time" class="form-control" name="HFin" id="HFin" required>
+                                    <div class="invalid-feedback">Veuillez fournir une heure de fin.</div>
+                                </div>
+                            </div>
+
+                            <!-- PJ Demande Field -->
+                            <div class="row mb-3">
+                                <label for="PJDemande" class="col-sm-2 col-form-label">PJ Demande</label>
+                                <div class="col-sm-10">
+                                    <input type="file" class="form-control" name="PJDemande" id="PJDemande" required>
+                                    <div class="invalid-feedback">Veuillez fournir un fichier PJ Demande.</div>
+                                </div>
+                            </div>
+
+                            <!-- Exhibitor Field -->
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Exhibitor</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group has-validation">
+                                        <select class="form-select" aria-label="Default select example" name="Exhibitor" required>
+                                            <option value="" selected disabled>Sélectionnez un exhibitor</option>
+                                            {% for ele in exhibitor %}
+                                                <option value="{{ ele.user.id }}">{{ ele.user.username }}</option>
+                                            {% empty %}
+                                                <option disabled>Aucun utilisateur disponible</option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="invalid-feedback">Veuillez sélectionner un exhibitor.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-warning">Demander</button>
+                            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+       <script>
+  
+    // Existing script you provided
+    function adjustDateFin() {
+      const dateDebut = document.getElementById("DateDebut").value;
+      const dateFin = document.getElementById("DateFin");
+  
+      dateFin.min = dateDebut;
+      if (dateFin.value < dateDebut || !dateFin.value) {
+          dateFin.value = dateDebut;
+      }
+  }
+  
+  </script>
+   {% endblock content%}
+</body>
+</html>

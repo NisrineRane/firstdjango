@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background: #eee;
+    }
+
+    .ratings i {
+        font-size: 16px;
+        color: #A85751; /* Nouvelle couleur */
+    }
+
+    .strike-text {
+        color: #A85751; /* Nouvelle couleur */
+        text-decoration: line-through;
+    }
+
+    .product-image {
+        width: 100%;
+    }
+
+    .dot {
+        height: 7px;
+        width: 7px;
+        margin-left: 6px;
+        margin-right: 6px;
+        margin-top: 3px;
+        background-color: #A85751; /* Nouvelle couleur */
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .spec-1 {
+        color: #938787;
+        font-size: 15px;
+    }
+
+    h5 {
+        font-weight: 400;
+    }
+
+    .para {
+        font-size: 16px;
+    }
+
+    .best-product-message {
+        background-color: #FFCC00;
+        color: #030303;
+        padding: 5px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .best-product-icon {
+        font-size: 24px;
+        margin-right: 5px;
+    }
+
+    .search-icon {
+        font-size: 24px;
+        color: #FFCC00;
+        margin-right: 5px;
+    }
+
+    .custom-button {
+        background-color: #ff8500;
+        color: white; /* Couleur du texte du bouton */
+    }
+    
+    .custom-button:hover {
+        background-color: #ff8500; /* Couleur au survol */
+    }
+    
+</style>
+<div class="container">
+    <h1 class="text-center">Liste des Œuvres d'Art</h1>
+    <!-- Afficher les œuvres d'art sous forme de cartes -->
+    <div class="row">
+        {% for artwork in artworks %}
+        <div class="row p-2 bg-white border rounded">
+            <div class="col-md-3 mt-1">
+                <img class="img-fluid img-responsive rounded product-image" src="{{artwork.image.url }}"
+                    style="max-height: 200px; max-width: 100%;">
+            </div>
+            <div class="col-md-6 mt-1">
+                <h5 class="text-primary">{{ artwork.owner.username }}</h5>
+                <div class="d-flex flex-row">
+                    <div class="ratings mr-2"><i class="fa fa-star"
+                            style="color: #A85751;"></i><i class="fa fa-star"
+                            style="color: #A85751;"></i><i class="fa fa-star"
+                            style="color: #A85751;"></i><i class="fa fa-star"
+                            style="color: #A85751;"></i></div><span>{{pdt.reviews}} reviews</span>
+                </div>
+                <br>
+                <p>{{ artwork.description }}</p>
+            </div>
+            <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                <div class="d-flex flex-row align-items-center">
+                    <h4 class="mr-1">${{artwork.price}}</h4>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'demande_pret' %}" class="btn btn-warning">Demander Un Prêt</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

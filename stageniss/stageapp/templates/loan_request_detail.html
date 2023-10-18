@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la Demande de Prêt</title>
+    <!-- Inclure Bootstrap CSS (facultatif) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Styles personnalisés */
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .loan-request-details {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .request-info {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .action-buttons {
+            margin-top: 20px;
+        }
+        .accept-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .reject-button {
+            background-color: #F44336;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Détails de la Demande de Prêt</h1>
+        
+        <div class="loan-request-details">
+            <div class="request-info">
+                <p><strong>Œuvre d'art :</strong> {{ loan_request.artwork.title }}</p>
+                <p><strong>Acquéreur :</strong> {{ loan_request.requester.username }}</p>
+                <p><strong>Date de demande :</strong> {{ loan_request.request_date }}</p>
+                <p><strong>Durée du prêt :</strong> {{ loan_request.loan_duration }} jours</p>
+                <p><strong>Status :</strong> {{ loan_request.status }}</p>
+                <!-- Vous pouvez ajouter d'autres détails de demande ici -->
+            </div>
+            <div class="action-buttons">
+                <form method="post" action="{% url 'respond_to_loan_request' loan_request.id %}">
+                    {% csrf_token %}
+                    <button class="accept-button" type="submit" name="action" value="accept">Accepter</button>
+                    <button class="reject-button" type="submit" name="action" value="reject">Refuser</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript ou autres scripts (le cas échéant) -->
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord de l'acquéreur</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <p>Bienvenue, {{ user.username }}!</p>
+{% else %}
+    <p>Connectez-vous pour accéder à davantage de fonctionnalités.</p>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Répondre à la Demande de Prêt</title>
+</head>
+<body>
+    <h1>Répondre à la Demande de Prêt</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" name="action" value="accept">
+        <input type="submit" name="action" value="reject">
+    </form>
+</body>
+</html>

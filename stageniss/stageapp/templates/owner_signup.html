@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="card-title">Inscription en tant qu'Acquéreur</h4>
+                    <form method="post"  action="{% url 'owner_signup' %}">
+                        {% csrf_token %}
+                        {{ form.first_name.label_tag }}
+                        {{ form.first_name }}
+                        {{ form.last_name.label_tag }}
+                        {{ form.last_name }}
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                        {{ form.password1.label_tag }}
+                        {{ form.password1 }}
+                        {{ form.password2.label_tag }}
+                        {{ form.password2 }}
+                        <button type="submit" class="btn btn-primary btn-block mt-3">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

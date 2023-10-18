@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrat de Prêt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .download-button {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .download-button a {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .download-button a:hover {
+            background-color: #0056b3;
+        }
+
+        .sign-button {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: #28a745; /* Couleur verte pour le bouton Signer */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sign-button:hover {
+            background-color: #218838; /* Couleur verte plus foncée au survol */
+        }
+    </style>
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    <div class="container mt-5">
+        <h2>Contrat de Prêt</h2>
+        <p>Voici votre contrat de prêt. Vous pouvez le télécharger, le signer et l'envoyer.</p>
+        
+        <!-- Bouton de téléchargement du contrat -->
+        <div class="download-button">
+            <a href="{{ contract_file.url }}" download>Télécharger le Contrat</a>
+        </div>
+
+        <!-- Bouton pour signer et envoyer -->
+        <div class="download-button">
+            <a href="#" class="sign-button">Signer et Envoyer</a>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

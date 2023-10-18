@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrat de Prêt</title>
+</head>
+<body>
+    <h1>Contrat de Prêt</h1>
+
+    <p>Ce contrat de prêt est conclu entre [nom de l'emprunteur] et [nom du prêteur] le [date de début] et est valable jusqu'au [date de fin].</p>
+
+    <!-- Autres détails du contrat ici -->
+
+    <p>Signature de l'emprunteur: __________________________</p>
+    <p>Signature du prêteur: __________________________</p>
+
+
+
+    <!-- Affichez le contenu du contrat généré -->
+{{ contract.content|safe }}
+
+<!-- Ajoutez un lien de téléchargement vers le contrat -->
+<a href="{% url 'download_contract' contract.id %}" download>Télécharger le contrat</a>
+
+</body>
+</html>
